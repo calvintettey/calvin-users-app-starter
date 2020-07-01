@@ -6,13 +6,15 @@ class UserItem extends React.Component {
   // import React, {Component} from "react".
   constructor(props) {
     super(props);
-  }
+  };
 
-  render() {
+  
+
+  render() { 
     return (
       <div>
-        <h1></h1>
-        <h3></h3>
+        <h1>{this.props.name} </h1>
+        <h3>{this.props.email}</h3>
       </div>
     );
   }
