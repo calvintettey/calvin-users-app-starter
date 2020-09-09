@@ -1,70 +1,35 @@
 import React from "react";
 import "./App.css";
-import UserItem from "./components/UserItem";
-
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      name: "",
-      email:"",
-      users: []
-    };
-     
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handleEmailChange = this.handleEmailChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+import { connect } from "react-redux";
+import { addUser } from "./store/allusersActions";
+import AddUserForm from './components/AddUserForm';
+import AllUsers from "./components/AllUsers";
 
 
-  handleNameChange(e) {
-    this.setState({ name: e.target.value });
-  }
+export  class App extends React.Component {
 
-  handleEmailChange(e) {
-    this.setState({ email: e.target.value });
-  }
 
-  handleSubmit(e) {
-    e.preventDefault()
-    let newUser = { name: this.state.name, email:this.state.email };
-    this.setState({ users: [...this.state.users, newUser] });
+  addNewUser = (user) => {
+    this.props.addUser(user)
   }
 
   render() {
     return (
       <div className="App">
-        {/* Form to add new user */}
-        <div>
-          <form onSubmit={this.handleSubmit} >
-            <input 
-              type="text" 
-              placeholder="Name" 
-              value={this.state.name}
-              onChange={this.handleNameChange}
-            />
-            <br />
-            <input 
-              type="email" 
-              placeholder="Email" 
-              value={this.state.email} 
-              onChange={this.handleEmailChange}
-            />
-            <br />
-            <input type="submit" />
-          </form>
-        </div>
-
-        {/* List of users */}
-        <div>
-          {this.state.users.map((user, index) => ( 
-            <UserItem name={user.name} email={user.email} key={index}/>
-          ))}
-        </div>
+        <AddUserForm addUser ={this.addNewUser} />
+        <AllUsers AllUsers={this.props.users} />
       </div>
     );
   }
 }
 
-export default App;
+let mapStateToProps = (state) => ({
+  users: state.users
+});
+
+let mapDispatchToProps = {
+  addUser
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
+
