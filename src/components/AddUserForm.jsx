@@ -51,9 +51,7 @@ export class AddUserForm extends Component {
 
                     <br />
 
-                    <input type="submit" />
-
-                    <button type="submit">Add To Contacts</button>
+                    <button type="submit">Add To Users</button>
 
                 </form>
             </>
