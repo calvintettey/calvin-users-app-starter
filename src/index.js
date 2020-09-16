@@ -5,11 +5,11 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
-import thunk from "redux-thunk";
 import allusersReducer from "./store/allusersReducer";
 import { getFirebase, reduxReactFirebase } from "react-redux-firebase";
-import { getFirestore, reduxFirestore } from "reduxFirestore";
+import { getFirestore, reduxFirestore } from "redux-firestore";
 import firebase from "./firebase/config";
+import thunk from "redux-thunk";
 
 let store = createStore(
   allusersReducer,
