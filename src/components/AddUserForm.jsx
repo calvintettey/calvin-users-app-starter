@@ -6,7 +6,6 @@ export class AddUserForm extends Component {
         this.state = {
             name: "",
             email:"",
-            users: []
         }
     }
 
@@ -19,14 +18,10 @@ export class AddUserForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.addUser(this.state)
+        this.props.addNewUser(this.state)
         this.setState({name:"", email:""})
         console.log("submitted");
 
-        this.setState = {
-            name: "",
-            email:"",
-          };
     }
 
     render() {
@@ -36,6 +31,7 @@ export class AddUserForm extends Component {
                     <input 
                     type="text" 
                     placeholder="Name" 
+                    name="name"
                     value={this.state.name}
                     onChange={this.handleChange}
                     />
@@ -45,7 +41,8 @@ export class AddUserForm extends Component {
                     <input 
                     type="email" 
                     placeholder="Email" 
-                    value={this.state.email} 
+                    name="email"
+                    value={this.state.email}
                     onChange={this.handleChange}
                     />
 

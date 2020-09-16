@@ -10,13 +10,14 @@ export  class App extends React.Component {
 
 
   addNewUser = (user) => {
+    console.log("logging user", user)
     this.props.addUser(user)
   }
 
   render() {
     return (
       <div className="App">
-        <AddUserForm addUser ={this.addNewUser} />
+        <AddUserForm addNewUser={this.addNewUser} />
         <AllUsers AllUsers={this.props.users} />
       </div>
     );
