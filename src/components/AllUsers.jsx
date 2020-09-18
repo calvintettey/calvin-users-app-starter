@@ -9,6 +9,8 @@ let AllUsers = (props) => {
                     name={user.name} 
                     email={user.email} 
                     key={index}
+                    id={user.id}
+                    removeUser={this.deleteUser}
                 />
             
             })}

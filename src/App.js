@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { connect } from "react-redux";
-import { addUser } from "./store/allusersActions";
+import { addUser, deleteUser } from "./store/allusersActions";
 import AddUserForm from './components/AddUserForm';
 import AllUsers from "./components/AllUsers";
 
@@ -12,6 +12,10 @@ export  class App extends React.Component {
   addNewUser = (user) => {
     console.log("logging user", user)
     this.props.addUser(user)
+  };
+
+  deleteUser = user_id => {
+    this.props.deleteUser(user_id);
   }
 
   render() {
@@ -29,7 +33,8 @@ let mapStateToProps = (state) => ({
 });
 
 let mapDispatchToProps = {
-  addUser
+  addUser, 
+  deleteUser
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
