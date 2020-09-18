@@ -1,16 +1,16 @@
 import React from 'react';
 import User from './User';
 
-let AllUsers = (props) => {
+const AllUsers = (props) => {
     return (
         <>
-            {props.AllUsers.map((user, index) => {
+            {props.AllUsers.map((user, index, deleteUser) => {
                 return <User 
                     name={user.name} 
                     email={user.email} 
                     key={index}
                     id={user.id}
-                    removeUser={this.deleteUser}
+                    removeUser={deleteUser}
                 />
             
             })}

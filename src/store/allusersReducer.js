@@ -1,6 +1,6 @@
 import { v4 as uuid } from "uuid";
 
-let initialState = {
+const initialState = {
   users: [
     { id:"1", name: "Senyo Torglo", email: "senyo@email.com" },
     { id:"2", name: "Eyram Frimpong", email: "frims@email.com" },
@@ -8,11 +8,11 @@ let initialState = {
   ],
 };
 
-let allusersReducer = (state = initialState, action) => {
+const allusersReducer = (state = initialState, action) => {
   switch (action.type) {
     case "ADD_USER":
       console.log("reducer", action.payload);
-      let newUser = {
+      const newUser = {
         id: uuid(),
         name: action.payload.name,
         email: action.payload.email,
@@ -20,18 +20,18 @@ let allusersReducer = (state = initialState, action) => {
       return { ...state, users: [...state.users, newUser] };
 
       case "DELETE_USER":
-        let filteredUsers = state.users.filter(user => user.id !== action.payload);
+        const filteredUsers = state.users.filter(user => user.id !== action.payload);
         return {...state, users: filteredUsers}
       
       case "EDIT_USER":
-        let updatedUsers = state.users.map(user => {
+        const updatedUsers = state.users.map(user => {
           if (user.id === action.user_id) {
             return{...user, ...action.updated_info}
           } else {
             return user;
           }
         });
-        return{...state, users:updatedUsers}
+        return{...state, users: updatedUsers}
 
     default:
       return state;
