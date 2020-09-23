@@ -7,9 +7,9 @@ export class EditForm extends Component {
     super(props);
     this.state = {
       name: props.user.name,
-      email: props.user.email
+      email: props.user.email,
     };
-    this.id = props.match.params.id;
+    this.id = props.match.params.id
   }
 
   handleChange = (e) => {
@@ -24,13 +24,14 @@ export class EditForm extends Component {
       name: this.state.name,
       email: this.state.email,
     };
+    console.log(updatedInfo);
 
     this.props.editUser(this.id, updatedInfo);
     this.setState({
       name: "",
-      email: "",
+      email: ""
     });
-    this.props.history.push("/");
+    this.props.history.push('/');
   };
 
   render() {
@@ -65,10 +66,9 @@ export class EditForm extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  {
-    user: state.users.find(
-        user => user.id === ownProps.match.params.id);
-  }
+  return {
+    user: state.users.find((user) => user.id === ownProps.match.params.id)
+  };
 };
 
 const mapDispatchToProps = {
