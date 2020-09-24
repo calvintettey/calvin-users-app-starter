@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from "react-redux";
+import { addUser } from "../store/allusersActions";
 
 export class AddUserForm extends Component {
     constructor(props) {
@@ -18,7 +20,7 @@ export class AddUserForm extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        this.props.addNewUser(this.state)
+        this.props.addUser(this.state)
         this.setState({name:"", email:""})
         console.log("submitted");
 
@@ -56,4 +58,7 @@ export class AddUserForm extends Component {
     }
 }
 
-export default AddUserForm;
+const mapDispatchToProps = {
+    addUser: addUser
+  };
+export default connect(null, mapDispatchToProps)(AddUserForm);
