@@ -14,10 +14,20 @@ export const addUser = (user) => {
 };
 
 export const deleteUser = (user_id) => {
-  return {
-    type: "DELETE_USER",
-    payload: user_id
-  };
+  return (dispatch, state, {getFirestore}) => {
+    getFirestore()
+    .collection('All Users')
+    .doc(user_id)
+    .delete()
+    .then(()=>{
+      
+    });
+  }; 
+
+  // {
+  //   type: "DELETE_USER",
+  //   payload: user_id
+  // };
 };
 
 export const editUser = (user_id, updated_info) => {
@@ -43,7 +53,7 @@ export const getAllUsers = () => {
       dispatch({
         type:"SET_ALL_USERS",
         payload: allusers,
-      });
+      }); 
     },
     (err) => {
 
