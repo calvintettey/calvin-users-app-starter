@@ -36,7 +36,8 @@ export const getAllUsers = () => {
       (snapshot)=>{
       let allusers = [];
       snapshot.forEach((doc) => {
-          allusers.push(doc.data());
+         
+        allusers.push({...doc.data(), id: doc.id});
       });
       console.log(allusers);
       dispatch({
