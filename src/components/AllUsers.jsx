@@ -1,8 +1,5 @@
 import React from "react";
 import User from "./User";
-import { connect } from "react-redux";
-import { deleteUser } from "../store/allusersActions";
-import { logRoles } from "@testing-library/react";
 
 const AllUsers = (props) => {
   return (

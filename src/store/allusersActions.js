@@ -1,3 +1,5 @@
+import { getFirestore } from "redux-firestore";
+
 export const addUser = (user) => {
   return (dispatch, state, { getFirestore }) => {
     getFirestore()
@@ -5,8 +7,6 @@ export const addUser = (user) => {
       .add(user)
       .then((doc) => {
         dispatch({
-            type: "ADD_USER",
-            payload: user
         })
       });
   };
@@ -27,3 +27,26 @@ export const editUser = (user_id, updated_info) => {
     updated_info: updated_info
   };
 };
+
+export const getAllUsers = () => {
+  return (dispatch, state, { getFirestore }) => {
+    getFirestore()
+    .collection('All Users')
+    .onSnapshot(
+      (snapshot)=>{
+      let allusers = [];
+      snapshot.forEach((doc) => {
+          allusers.push(doc.data());
+      });
+      console.log(allusers);
+      dispatch({
+        type:"SET_ALL_USERS",
+        payload: allusers,
+      });
+    },
+    (err) => {
+
+    }
+    )
+  }
+}
