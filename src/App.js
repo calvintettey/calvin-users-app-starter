@@ -13,10 +13,10 @@ export class App extends Component {
       </div>
     );
   }
-};
+}
 
 const mapStateToProps = (state) => ({
-  users: state.users
+  users: state.users,
 });
 
 export default connect(mapStateToProps)(App);
