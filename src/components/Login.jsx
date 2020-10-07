@@ -3,6 +3,10 @@ import { connect } from "react-redux";
 import { loginWithEmail, loginWithGoogle } from "../store/authActions";
 
 function Login(props) {
+  if (!props.auth.isLoaded) return null;
+
+  if (props.auth.uid) props.history.push("/");
+
   const handleSubmit = (e) => {
     e.preventDefault();
     let email = e.target.elements.email.value;
@@ -43,11 +47,15 @@ function Login(props) {
   );
 }
 
-const mapStateToProps = () => {};
+const mapStateToProps = (state) => {
+  return {
+    auth: state.firebase.auth,
+  };
+};
 
 const mapDispatchToProps = {
   loginWithEmail,
-  loginWithGoogle
+  loginWithGoogle,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);
