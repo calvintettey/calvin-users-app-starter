@@ -3,9 +3,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 
-function ProtectedRoute({ component: Component, ...others }) {
+function ProtectedRoute({ component: Component, auth, ...others }) {
   if (!auth.isLoaded) return null;
-  if (auth.uid) {
+  if (auth.uid) { 
     return (
       <Route
         {...others}
@@ -18,8 +18,8 @@ function ProtectedRoute({ component: Component, ...others }) {
 
   return (
     <Route
-      {...others}
-      render={(props) => {
+        {...others}
+        render={(props) => {
         return <Redirect to={{ pathname: "/login" }} />;
       }}
     />
